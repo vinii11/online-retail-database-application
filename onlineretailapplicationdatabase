@@ -1,0 +1,41 @@
+#Online retail database.
+CREATE TABLE goods(
+goodsID INT PRIMARY KEY,
+goodsName VARCHAR(100),
+price DECIMAL(10,2),
+stockquantity INT);
+
+#Create consumers table
+CREATE TABLE consumers(
+consumerID INT PRIMARY KEY,
+FirstName VARCHAR(50),
+LastName VARCHAR(50),
+Email VARCHAR(100),
+Address VARCHAR(100));
+
+#Create requirements table
+CREATE TABLE requiremnents(
+orderID INT PRIMARY KEY,
+consumerID INT,
+orderDate DATE,
+Totalamount DECIMAL(10,2),
+FOREIGN KEY(consumerID) REFERENCES consumers(consumerID));
+
+#Create table requirementdetails
+CREATE TABLE requirementdetails(
+requirementsdetailID INT PRIMARY KEY,
+orderID INT,
+goodsID INT,
+quantity INT,
+subtotal DECIMAL(10,2),
+FOREIGN KEY(orderID) REFERENCES requiremnents(orderID),
+FOREIGN KEY(orderID) REFERENCES goods (goodsID));
+
+SELECT * FROM requirementdetails;
+SELECT * FROM consumers;
+#insert data into goods table
+INSERT INTO goods(goodsID,goodsname,price,stockquantity)
+VALUES(2,'smart Watch',60.00,20);
+
+INSERT INTO consumers(consumerID,FirstName,LastName,Email,Address)
+VALUES(102,'Rohan','Singh','rohan@email.com','11/33 Munbai');
